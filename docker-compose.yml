@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  ustat:
+    build: .
+    container_name: ustat
+    volumes:
+      - ./headers.txt:/app/headers.txt
+      # - .:/app
+      # - /app/node_modules # Prevent local node_modules override
+    command: bun run start
