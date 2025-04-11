@@ -7,3 +7,4 @@ services:
       # - .:/app
       # - /app/node_modules # Prevent local node_modules override
     command: bun run start
+    restart: unless-stopped
