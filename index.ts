@@ -8,17 +8,15 @@ async function parseHeadersFromFile(filePath: string): Promise<Record<string, st
 
   const lines = rawHeaders.split("\n")
 
-  if (lines.length % 2 === 0) {
-    let tmpKey: string | null = null
-    lines.forEach(line => {
-      if (tmpKey === null && line.endsWith(":")) {
-        tmpKey = line.slice(0, -1)
-      } else if (tmpKey !== null) {
-        headers[tmpKey] = line;
-        tmpKey = null
-      }
-    });
-  }
+  let tmpKey: string | null = null
+  lines.forEach(line => {
+    if (tmpKey === null && line.endsWith(":")) {
+      tmpKey = line.slice(0, -1)
+    } else if (tmpKey !== null) {
+      headers[tmpKey] = line;
+      tmpKey = null
+    }
+  });
 
   return headers;
 }
@@ -43,11 +41,9 @@ async function sendMessage(text: string) {
   }, {
     headers
   })
-
-  // console.log(data)
 }
 
 while (true) {
   await sendMessage("t!fishy");
-  await Bun.sleep(30 * 1000); // Sleep for 60 seconds
+  await Bun.sleep(30 * 1000);
 }
